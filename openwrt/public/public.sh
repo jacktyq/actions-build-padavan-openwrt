@@ -12,9 +12,8 @@ adguardhome_url='https://github.com/rufengsuixing/luci-app-adguardhome.git' # ad
 lienol_url='https://github.com/Lienol/openwrt-package.git'       # Lienol 包地址
 vssr_url_rely='https://github.com/jerrykuku/lua-maxminddb.git'   # vssr lua-maxminddb依赖
 vssr_url='https://github.com/jerrykuku/luci-app-vssr.git'        # vssr地址
-vssr_plus_rely='https://github.com/Leo-Jo-My/my.git'             # vssr_plus 依赖
-vssr_plus='https://github.com/Leo-Jo-My/luci-app-vssr-plus.git'  # vssr_plus 地址
 filter_url='https://github.com/destan19/OpenAppFilter.git'       # AppFilter 地址
+smartdns_url='https://github.com/pymumu/openwrt-smartdns.git'    #smartdns地址
 # 命令
 # echo "修改机器名称"
 # sed -i "s/OpenWrt/$device_name/g" package/base-files/files/bin/config_generate
@@ -50,33 +49,16 @@ git clone $openClash_url package/lean/luci-app-openclash
 echo 'CONFIG_PACKAGE_luci-app-openclash=y' >> .config
 echo 'CONFIG_PACKAGE_luci-i18n-openclash-zh-cn=y'  >> .config
 
-echo '添加Lienol包'
-git clone $lienol_url package/Lienol
+ echo '添加adguardhome'
+ git clone $adguardhome_url package/lean/luci-app-adguardhome
+ echo 'CONFIG_PACKAGE_luci-app-adguardhome=y' >> .config
+ echo 'CONFIG_PACKAGE_luci-i18n-adguardhome-zh-cn=y'  >> .config
 
-echo '添加Passwall'
-echo 'CONFIG_PACKAGE_luci-app-passwall=y' >> .config
-echo 'CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks=y' >> .config
-echo 'CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y' >> .config
-echo 'CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y' >> .config
-echo 'CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=y' >> .config
-echo 'CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y' >> .config
-echo 'CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun=y' >> .config
-echo 'CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=y'  >> .config
-
-echo '添加filebrowser'
-echo 'CONFIG_PACKAGE_luci-app-filebrowser=y' >> .config
-echo 'CONFIG_PACKAGE_luci-i18n-filebrowser-zh-cn=y'  >> .config
-
-# echo '添加adguardhome'
-# git clone $adguardhome_url package/lean/luci-app-adguardhome
-# echo 'CONFIG_PACKAGE_luci-app-adguardhome=y' >> .config
-# echo 'CONFIG_PACKAGE_luci-i18n-adguardhome-zh-cn=y'  >> .config
-
-# echo '添加HelloWord,并使用包默认的配置'  # TODO 这个的配置文件和SSP 冲突
-# git clone $vssr_url_rely package/lean/lua-maxminddb
-# git clone $vssr_url package/lean/luci-app-vssr
-# echo 'CONFIG_PACKAGE_luci-app-vssr=y' >> .config
-# echo 'CONFIG_PACKAGE_luci-i18n-vssr-zh-cn=y'  >> .config
+ echo '添加HelloWord,并使用包默认的配置'  # TODO 这个的配置文件和SSP 冲突
+ git clone $vssr_url_rely package/lean/lua-maxminddb
+ git clone $vssr_url package/lean/luci-app-vssr
+ echo 'CONFIG_PACKAGE_luci-app-vssr=y' >> .config
+ echo 'CONFIG_PACKAGE_luci-i18n-vssr-zh-cn=y'  >> .config
 
 echo '添加OpenAppFilter过滤器'
 git clone $filter_url package/OpenAppFilter
@@ -84,6 +66,11 @@ echo 'CONFIG_PACKAGE_luci-app-oaf=y' >> .config
 echo 'CONFIG_PACKAGE_kmod-oaf=y' >> .config
 echo 'CONFIG_PACKAGE_appfilter=y' >> .config
 echo 'CONFIG_PACKAGE_luci-i18n-oaf-zh-cn=y'  >> .config
+
+ echo '添加smartdns'
+ git clone $smartdns_url package/lean/luci-app-smartdns
+ echo 'CONFIG_PACKAGE_luci-app-smartdns=y' >> .config
+ echo 'CONFIG_PACKAGE_luci-i18n-smartdns-zh-cn=y'  >> .config
 
 # echo '添加Leo-Jo-My的Hello World,并且使用默认包配置'
 # git clone $vssr_plus_rely package/lean/luci-vssr-plus-rely
